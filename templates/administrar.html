@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrar Registros</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Administrar Registros</h1>
+        
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>DNI</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Dirección</th>
+                    <th>Teléfono</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for registro in registros %}
+                <tr>
+                    <td>{{ registro[1] }}</td>
+                    <td>{{ registro[2] }}</td>
+                    <td>{{ registro[3] }}</td>
+                    <td>{{ registro[4] }}</td>
+                    <td>{{ registro[5] }}</td>
+                    <td>
+                        <form action="/eliminar/{{ registro[1] }}" method="post">
+                            <button type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar este registro?')">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="separator"></div>
+        <a href="/" class="admin-back">Volver al Registro</a>
+    </div>
+</body>
+</html>
